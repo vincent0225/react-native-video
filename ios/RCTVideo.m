@@ -191,11 +191,12 @@ static NSString *const timedMetadata = @"timedMetadata";
    if( currentTimeSecs >= 0 && self.onVideoProgress) {
       self.onVideoProgress(@{
                              @"currentTime": [NSNumber numberWithFloat:CMTimeGetSeconds(currentTime)],
-                             @"playableDuration": [self calculatePlayableDuration],
-                             @"atValue": [NSNumber numberWithLongLong:currentTime.value],
-                             @"atTimescale": [NSNumber numberWithInt:currentTime.timescale],
-                             @"target": self.reactTag,
-                             @"seekableDuration": [NSNumber numberWithFloat:CMTimeGetSeconds([self playerItemSeekableTimeRange].duration)],
+                             // Temp fix to avoid crashing when playing live HLS m3u8
+//                             @"playableDuration": [self calculatePlayableDuration],
+//                             @"atValue": [NSNumber numberWithLongLong:currentTime.value],
+//                             @"atTimescale": [NSNumber numberWithInt:currentTime.timescale],
+//                             @"target": self.reactTag,
+//                             @"seekableDuration": [NSNumber numberWithFloat:CMTimeGetSeconds([self playerItemSeekableTimeRange].duration)],
                             });
    }
 }
